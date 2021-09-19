@@ -1,11 +1,8 @@
 package me.flamingkatana.mc.plugins.coloredanvils.item;
 
-import me.flamingkatana.mc.plugins.coloredanvils.ColoredAnvils;
-import me.flamingkatana.mc.plugins.coloredanvils.constant.AnvilConstants;
 import org.bukkit.ChatColor;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.scheduler.BukkitRunnable;
 
 public class ItemColorTranslator {
 
@@ -15,12 +12,7 @@ public class ItemColorTranslator {
             return;
         }
         var translatedItemStack = translateNameColor(itemStack);
-        new BukkitRunnable() {
-            @Override
-            public void run() {
-                inventory.setItem(index, translatedItemStack);
-            }
-        }.runTaskLater(ColoredAnvils.getPlugin(), 0L);
+        InventoryUtilities.updateItemInInventorySlotDelayed(inventory, index, translatedItemStack);
     }
 
     public static ItemStack translateNameColor(ItemStack itemStack) {
