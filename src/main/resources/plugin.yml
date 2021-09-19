@@ -1,0 +1,6 @@
+name: ColoredAnvils
+version: ${project.version}
+main: me.flamingkatana.mc.plugins.coloredanvils.ColoredAnvils
+api-version: 1.17
+authors: [ Flaming_Katana ]
+description: ColoredAnvils by Flaming_Katana
