@@ -1,0 +1,54 @@
+name: ColoredAnvils
+main: me.flamingkatana.coloredanvils.ColoredAnvils
+version: 1.08
+permissions:
+    coloredanvils.*:
+        description: Gives access to all ColoredAnvils actions.
+    coloredanvils.color.*:
+        description: Gives access to all ColoredAnvils actions.
+    coloredanvils.color.4:
+        description: Allows the player to use the &4 color code.
+    coloredanvils.color.c:
+        description: Allows the player to use the &c color code.
+    coloredanvils.color.6:
+        description: Allows the player to use the &6 color code.
+    coloredanvils.color.e:
+        description: Allows the player to use the &e color code.
+    coloredanvils.color.2:
+        description: Allows the player to use the &2 color code.
+    coloredanvils.color.a:
+        description: Allows the player to use the &a color code.
+    coloredanvils.color.b:
+        description: Allows the player to use the &b color code.
+    coloredanvils.color.3:
+        description: Allows the player to use the &3 color code.
+    coloredanvils.color.1:
+        description: Allows the player to use the &1 color code.
+    coloredanvils.color.9:
+        description: Allows the player to use the &9 color code.
+    coloredanvils.color.d:
+        description: Allows the player to use the &d color code.
+    coloredanvils.color.5:
+        description: Allows the player to use the &5 color code.
+    coloredanvils.color.f:
+        description: Allows the player to use the &f color code.
+    coloredanvils.color.7:
+        description: Allows the player to use the &7 color code.
+    coloredanvils.color.8:
+        description: Allows the player to use the &8 color code.
+    coloredanvils.color.0:
+        description: Allows the player to use the &0 color code.
+    coloredanvils.color.l:
+        description: Allows the player to use the &l format code.
+    coloredanvils.color.n:
+        description: Allows the player to use the &n format code.
+    coloredanvils.color.o:
+        description: Allows the player to use the &o format code.
+    coloredanvils.color.k:
+        description: Allows the player to use the &k format code.
+    coloredanvils.color.m:
+        description: Allows the player to use the &m format code.
+    coloredanvils.color.r:
+        description: Allows the player to use the &r format code.
+description: >
+             ColoredAnvils by Flaming_Katana.
