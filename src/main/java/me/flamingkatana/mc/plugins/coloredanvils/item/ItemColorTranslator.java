@@ -18,7 +18,7 @@ public class ItemColorTranslator {
         new BukkitRunnable() {
             @Override
             public void run() {
-                inventory.setItem(AnvilConstants.OUTPUT_SLOT, translatedItemStack);
+                inventory.setItem(index, translatedItemStack);
             }
         }.runTaskLater(ColoredAnvils.getPlugin(), 0L);
     }
