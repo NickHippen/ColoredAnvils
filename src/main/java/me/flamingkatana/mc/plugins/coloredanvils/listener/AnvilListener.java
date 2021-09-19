@@ -1,6 +1,6 @@
 package me.flamingkatana.mc.plugins.coloredanvils.listener;
 
-import me.flamingkatana.mc.plugins.coloredanvils.ItemColorTranslator;
+import me.flamingkatana.mc.plugins.coloredanvils.item.ItemColorTranslator;
 import me.flamingkatana.mc.plugins.coloredanvils.constant.AnvilConstants;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

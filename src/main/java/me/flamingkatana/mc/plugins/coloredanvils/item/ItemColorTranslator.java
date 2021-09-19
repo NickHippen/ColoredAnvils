@@ -1,5 +1,6 @@
-package me.flamingkatana.mc.plugins.coloredanvils;
+package me.flamingkatana.mc.plugins.coloredanvils.item;
 
+import me.flamingkatana.mc.plugins.coloredanvils.ColoredAnvils;
 import me.flamingkatana.mc.plugins.coloredanvils.constant.AnvilConstants;
 import org.bukkit.ChatColor;
 import org.bukkit.inventory.Inventory;
