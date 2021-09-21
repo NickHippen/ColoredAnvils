@@ -18,7 +18,9 @@ public class AnvilListener implements Listener {
     @EventHandler
     public void onPrepareAnvil(PrepareAnvilEvent event) {
         var anvilInventory = event.getInventory();
-        ItemColorTranslator.applyColorTranslationToInventorySlot(anvilInventory, AnvilConstants.OUTPUT_SLOT);
+        var humanEntity = event.getView().getPlayer();
+
+        ItemColorTranslator.updateColorEncodingForAnvilOutput(anvilInventory, humanEntity);
     }
 
     @EventHandler
@@ -43,9 +45,9 @@ public class AnvilListener implements Listener {
         event.setCancelled(true);
         if (humanEntity instanceof Player) {
             var player = (Player) humanEntity;
-            player.setExp(player.getExp());
+            player.setExp(player.getExp()); // Cancelling the event will still take the player's EXP - this prevents it
         }
-        inventory.setItem(AnvilConstants.OUTPUT_SLOT, new ItemStack(Material.AIR));
+        inventory.setItem(AnvilConstants.OUTPUT_SLOT, new ItemStack(Material.AIR)); // Clients will not see the output slot clear without this
     }
 
 }

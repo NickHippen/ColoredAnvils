@@ -1,6 +1,7 @@
 package me.flamingkatana.mc.plugins.coloredanvils;
 
 import me.flamingkatana.mc.plugins.coloredanvils.item.NameFilter;
+import me.flamingkatana.mc.plugins.coloredanvils.item.PermissionValidator;
 import me.flamingkatana.mc.plugins.coloredanvils.listener.AnvilListener;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -10,6 +11,7 @@ public final class ColoredAnvils extends JavaPlugin {
 
     private static ColoredAnvils plugin;
     private static NameFilter nameFilter;
+    private static PermissionValidator permissionValidator;
 
     @Override
     public void onEnable() {
@@ -17,6 +19,7 @@ public final class ColoredAnvils extends JavaPlugin {
         saveDefaultConfig();
         updateConfig();
         nameFilter = new NameFilter();
+        permissionValidator = new PermissionValidator();
         registerEvents();
     }
 
@@ -34,6 +37,10 @@ public final class ColoredAnvils extends JavaPlugin {
 
     public static NameFilter getNameFilter() {
         return nameFilter;
+    }
+
+    public static PermissionValidator getPermissionValidator() {
+        return permissionValidator;
     }
 
     public static void updateConfig() {
