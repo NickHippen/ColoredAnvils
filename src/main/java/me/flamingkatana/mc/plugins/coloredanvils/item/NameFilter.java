@@ -34,8 +34,12 @@ public class NameFilter {
 
     public List<String> findIllegalWords(String name) {
         return illegalWords.stream()
-                .filter(name::contains)
+                .filter(illegalWord -> containsIgnoreCase(name, illegalWord))
                 .collect(Collectors.toList());
+    }
+
+    private boolean containsIgnoreCase(String str, String check) {
+        return str.toLowerCase().contains(check.toLowerCase());
     }
 
 }
