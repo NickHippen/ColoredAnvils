@@ -3,6 +3,7 @@ package me.flamingkatana.mc.plugins.coloredanvils;
 import me.flamingkatana.mc.plugins.coloredanvils.item.NameFilter;
 import me.flamingkatana.mc.plugins.coloredanvils.item.PermissionValidator;
 import me.flamingkatana.mc.plugins.coloredanvils.listener.AnvilListener;
+import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.Map;
@@ -15,6 +16,7 @@ public final class ColoredAnvils extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        enableMessage();
         plugin = this;
         saveDefaultConfig();
         updateConfig();
@@ -25,6 +27,17 @@ public final class ColoredAnvils extends JavaPlugin {
 
     @Override
     public void onDisable() {
+        disableMessage();
+    }
+
+    private void enableMessage() {
+        PluginDescriptionFile pdfFile = this.getDescription();
+        getLogger().info(pdfFile.getName() + " v" + pdfFile.getVersion() + " has been enabled!");
+    }
+
+    private void disableMessage() {
+        PluginDescriptionFile pdfFile = this.getDescription();
+        getLogger().info(pdfFile.getName() + " v" + pdfFile.getVersion() + " has been disabled!");
     }
 
     private void registerEvents() {
