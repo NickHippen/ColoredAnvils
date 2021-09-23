@@ -34,7 +34,7 @@ public class PermissionValidator {
             if (hasColorPermission(humanEntity, colorCode)) {
                 continue;
             }
-            enforcedName = enforcedName.replaceAll(ChatColor.COLOR_CHAR + "" + colorCode, AnvilConstants.DECODED_COLOR_CHAR + "" + colorCode);
+            enforcedName = enforcedName.replaceAll(ChatColor.COLOR_CHAR + "" + colorCode, AnvilConstants.UNTRANSLATED_COLOR_CHAR + "" + colorCode);
         }
         return enforcedName;
     }

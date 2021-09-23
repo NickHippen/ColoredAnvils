@@ -1,5 +1,6 @@
 package me.flamingkatana.mc.plugins.coloredanvils;
 
+import me.flamingkatana.mc.plugins.coloredanvils.item.ItemColorTranslator;
 import me.flamingkatana.mc.plugins.coloredanvils.item.NameFilter;
 import me.flamingkatana.mc.plugins.coloredanvils.item.PermissionValidator;
 import me.flamingkatana.mc.plugins.coloredanvils.listener.AnvilListener;
@@ -7,19 +8,23 @@ import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public final class ColoredAnvils extends JavaPlugin {
 
     private static ColoredAnvils plugin;
+    private static ItemColorTranslator itemColorTranslator;
     private static NameFilter nameFilter;
     private static PermissionValidator permissionValidator;
 
     @Override
     public void onEnable() {
-        enableMessage();
         plugin = this;
+        enableMessage();
         saveDefaultConfig();
         updateConfig();
+        itemColorTranslator = new ItemColorTranslator();
         nameFilter = new NameFilter();
         permissionValidator = new PermissionValidator();
         registerEvents();
@@ -33,6 +38,7 @@ public final class ColoredAnvils extends JavaPlugin {
     private void enableMessage() {
         PluginDescriptionFile pdfFile = this.getDescription();
         getLogger().info(pdfFile.getName() + " v" + pdfFile.getVersion() + " has been enabled!");
+        getLogger().info(getPlugin().getServer().getVersion() + "   " + getPlugin().getServer().getBukkitVersion());
     }
 
     private void disableMessage() {
@@ -48,11 +54,15 @@ public final class ColoredAnvils extends JavaPlugin {
         return plugin;
     }
 
-    public static NameFilter getNameFilter() {
+    public static ItemColorTranslator itemColorTranslator() {
+        return itemColorTranslator;
+    }
+
+    public static NameFilter nameFilter() {
         return nameFilter;
     }
 
-    public static PermissionValidator getPermissionValidator() {
+    public static PermissionValidator permissionValidator() {
         return permissionValidator;
     }
 

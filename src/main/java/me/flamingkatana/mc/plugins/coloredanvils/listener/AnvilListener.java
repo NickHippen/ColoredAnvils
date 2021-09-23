@@ -2,7 +2,6 @@ package me.flamingkatana.mc.plugins.coloredanvils.listener;
 
 import me.flamingkatana.mc.plugins.coloredanvils.ColoredAnvils;
 import me.flamingkatana.mc.plugins.coloredanvils.constant.AnvilConstants;
-import me.flamingkatana.mc.plugins.coloredanvils.item.ItemColorTranslator;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -20,7 +19,7 @@ public class AnvilListener implements Listener {
         var anvilInventory = event.getInventory();
         var humanEntity = event.getView().getPlayer();
 
-        ItemColorTranslator.updateColorEncodingForAnvilOutput(anvilInventory, humanEntity);
+        ColoredAnvils.itemColorTranslator().updateColorTranslationForAnvilOutput(anvilInventory, humanEntity);
     }
 
     @EventHandler
@@ -34,18 +33,18 @@ public class AnvilListener implements Listener {
             return;
         }
         var outputItem = event.getCurrentItem();
-        var foundIllegalWords = ColoredAnvils.getNameFilter().findIllegalWordsInName(outputItem);
+        var foundIllegalWords = ColoredAnvils.nameFilter().findIllegalWordsInName(outputItem);
         if (foundIllegalWords.isEmpty()) {
             return;
         }
         var humanEntity = event.getWhoClicked();
         foundIllegalWords.forEach(illegalWord ->
-                humanEntity.sendMessage(ChatColor.RED + ColoredAnvils.getNameFilter().getFilterMessage() + "'" + ChatColor.BOLD + illegalWord + ChatColor.RED + "'.")
+                humanEntity.sendMessage(ChatColor.RED + ColoredAnvils.nameFilter().getFilterMessage() + "'" + ChatColor.BOLD + illegalWord + ChatColor.RED + "'.")
         );
         event.setCancelled(true);
         if (humanEntity instanceof Player) {
             var player = (Player) humanEntity;
-            player.setExp(player.getExp()); // Cancelling the event will still take the player's EXP - this prevents it
+            player.setExp(player.getExp()); // Cancelling the event will still visually take the player's EXP - this corrects it
         }
         inventory.setItem(AnvilConstants.OUTPUT_SLOT, new ItemStack(Material.AIR)); // Clients will not see the output slot clear without this
     }
