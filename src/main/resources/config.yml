@@ -4,3 +4,4 @@ Filter_Enabled: false
 Filter:
   - Filter
   - Example
+Filter_Message: 'Your item cannot contain the word '

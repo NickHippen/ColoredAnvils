@@ -64,6 +64,8 @@ public final class ColoredAnvils extends JavaPlugin {
             getPlugin().getConfig().set("Filter_Enabled", false);
         if (!map.containsKey("Filter"))
             getPlugin().getConfig().set("Filter", new String[] { "Filter", "Example" });
+        if (!map.containsKey("Filter_Message"))
+            getPlugin().getConfig().set("Filter_Message", "Your item cannot contain the word ");
         getPlugin().saveConfig();
     }
 

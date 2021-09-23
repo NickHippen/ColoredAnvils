@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 public class NameFilter {
 
     private final List<String> illegalWords;
+    private final String filterMessage;
 
     public NameFilter() {
         boolean isFilterEnabled = ColoredAnvils.getPlugin().getConfig().getBoolean("Filter_Enabled");
@@ -18,6 +19,7 @@ public class NameFilter {
         } else {
             illegalWords = Collections.emptyList();
         }
+        filterMessage = ColoredAnvils.getPlugin().getConfig().getString("Filter_Message");
     }
 
     public List<String> findIllegalWordsInName(ItemStack itemStack) {
@@ -42,4 +44,7 @@ public class NameFilter {
         return str.toLowerCase().contains(check.toLowerCase());
     }
 
+    public String getFilterMessage() {
+        return filterMessage;
+    }
 }

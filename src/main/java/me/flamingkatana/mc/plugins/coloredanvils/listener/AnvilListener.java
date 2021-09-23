@@ -40,7 +40,7 @@ public class AnvilListener implements Listener {
         }
         var humanEntity = event.getWhoClicked();
         foundIllegalWords.forEach(illegalWord ->
-                humanEntity.sendMessage(ChatColor.RED + "Your item cannot contain the word '" + ChatColor.BOLD + illegalWord + ChatColor.RED + "'.")
+                humanEntity.sendMessage(ChatColor.RED + ColoredAnvils.getNameFilter().getFilterMessage() + "'" + ChatColor.BOLD + illegalWord + ChatColor.RED + "'.")
         );
         event.setCancelled(true);
         if (humanEntity instanceof Player) {
