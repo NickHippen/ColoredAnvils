@@ -2,6 +2,7 @@ package me.flamingkatana.mc.plugins.coloredanvils.item;
 
 import me.flamingkatana.mc.plugins.coloredanvils.ColoredAnvils;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.Collections;
 import java.util.List;
@@ -26,11 +27,11 @@ public class NameFilter {
         if (itemStack == null) {
             return Collections.emptyList();
         }
-        var itemMeta = itemStack.getItemMeta();
+        ItemMeta itemMeta = itemStack.getItemMeta();
         if (itemMeta == null) {
             return Collections.emptyList();
         }
-        var itemName = itemMeta.getDisplayName();
+        String itemName = itemMeta.getDisplayName();
         return findIllegalWords(itemName);
     }
 

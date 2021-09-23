@@ -13,7 +13,7 @@
 
     <description>ColoredAnvils by Flaming_Katana</description>
     <properties>
-        <java.version>17</java.version>
+        <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <junit.version>5.8.0</junit.version>
     </properties>

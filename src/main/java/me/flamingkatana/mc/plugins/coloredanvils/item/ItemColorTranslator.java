@@ -7,8 +7,10 @@ import net.md_5.bungee.api.ChatColor;
 import org.bukkit.entity.HumanEntity;
 import org.bukkit.inventory.AnvilInventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -27,11 +29,11 @@ public class ItemColorTranslator {
         new BukkitRunnable() {
             @Override
             public void run() {
-                var inputItem = anvilInventory.getItem(AnvilConstants.FIRST_INPUT_SLOT);
+                ItemStack inputItem = anvilInventory.getItem(AnvilConstants.FIRST_INPUT_SLOT);
                 if (inputItem == null) {
                     return;
                 }
-                var outputItem = anvilInventory.getItem(AnvilConstants.OUTPUT_SLOT);
+                ItemStack outputItem = anvilInventory.getItem(AnvilConstants.OUTPUT_SLOT);
                 if (outputItem == null) {
                     return;
                 }
@@ -41,16 +43,16 @@ public class ItemColorTranslator {
     }
 
     public ItemStack translateOutputItemNameColorBasedOnInputItem(ItemStack outputItem, ItemStack inputItem, HumanEntity humanEntity) {
-        var outputItemMeta = outputItem.getItemMeta();
+        ItemMeta outputItemMeta = outputItem.getItemMeta();
         if (outputItemMeta == null || !outputItemMeta.hasDisplayName()) {
             return outputItem;
         }
-        var outputName = outputItemMeta.getDisplayName();
-        var inputItemMeta = inputItem.getItemMeta();
+        String outputName = outputItemMeta.getDisplayName();
+        ItemMeta inputItemMeta = inputItem.getItemMeta();
         if (inputItemMeta == null || !inputItemMeta.hasDisplayName()) {
             return translateNameColorWithPermissions(outputItem, humanEntity);
         }
-        var inputName = inputItemMeta.getDisplayName();
+        String inputName = inputItemMeta.getDisplayName();
         if (doesOutputNameMatchInputName(outputName, inputName)) {
             outputItemMeta.setDisplayName(inputName);
             outputItem.setItemMeta(outputItemMeta);
@@ -62,14 +64,15 @@ public class ItemColorTranslator {
     }
 
     public ItemStack translateNameColorWithPermissions(ItemStack itemStack, HumanEntity humanEntity) {
-        var itemMeta = itemStack.getItemMeta();
+        ItemMeta itemMeta = itemStack.getItemMeta();
         if (itemMeta == null) {
             return itemStack;
         }
-        var untranslatedName = itemMeta.getDisplayName();
+        String untranslatedName = itemMeta.getDisplayName();
 //        var translatedName = ChatColor.translateAlternateColorCodes(AnvilConstants.UNTRANSLATED_COLOR_CHAR, untranslatedName);
-        var translatedName = translateColorCodes(untranslatedName);
-        var permissionEnforcedTranslatedName = ColoredAnvils.permissionValidator().enforcePermissionsOnName(humanEntity, translatedName);
+        String translatedName = translateColorCodes(untranslatedName);
+        ColoredAnvils.getPlugin().getLogger().info(Arrays.toString(translatedName.toCharArray()));
+        String permissionEnforcedTranslatedName = ColoredAnvils.permissionValidator().enforcePermissionsOnName(humanEntity, translatedName);
         itemMeta.setDisplayName(permissionEnforcedTranslatedName);
         itemStack.setItemMeta(itemMeta);
         return itemStack;
@@ -96,7 +99,7 @@ public class ItemColorTranslator {
     }
 
     private boolean canUseFullColors() {
-        var serverVersion = getServerVersionAsInt();
+        Integer serverVersion = getServerVersionAsInt();
         return serverVersion == null || serverVersion >= 16;
     }
 
