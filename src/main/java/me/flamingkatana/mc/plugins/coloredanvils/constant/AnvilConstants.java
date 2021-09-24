@@ -5,5 +5,6 @@ public class AnvilConstants {
     public static final int FIRST_INPUT_SLOT = 0;
     public static final int OUTPUT_SLOT = 2;
     public static final char UNTRANSLATED_COLOR_CHAR = '&';
+    public static final String HEX_CHARS = "0123456789aAbBcCdDeEfFxX";
 
 }

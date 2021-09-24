@@ -20,7 +20,8 @@ public class PermissionValidator {
                 || humanEntity.hasPermission("coloredanvils.*")
                 || humanEntity.hasPermission("coloredanvils.color.*")
                 || humanEntity.hasPermission("coloredanvils.color." + colorCode)
-                || humanEntity.hasPermission("coloredanvils.color.&" + colorCode);
+                || humanEntity.hasPermission("coloredanvils.color.&" + colorCode)
+                || (humanEntity.hasPermission("coloredanvils.color.hex") && AnvilConstants.HEX_CHARS.indexOf(colorCode) >= 0);
     }
 
     public String enforcePermissionsOnName(HumanEntity humanEntity, String name) {

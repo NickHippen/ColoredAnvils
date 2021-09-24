@@ -10,7 +10,6 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -69,9 +68,7 @@ public class ItemColorTranslator {
             return itemStack;
         }
         String untranslatedName = itemMeta.getDisplayName();
-//        var translatedName = ChatColor.translateAlternateColorCodes(AnvilConstants.UNTRANSLATED_COLOR_CHAR, untranslatedName);
         String translatedName = translateColorCodes(untranslatedName);
-        ColoredAnvils.getPlugin().getLogger().info(Arrays.toString(translatedName.toCharArray()));
         String permissionEnforcedTranslatedName = ColoredAnvils.permissionValidator().enforcePermissionsOnName(humanEntity, translatedName);
         itemMeta.setDisplayName(permissionEnforcedTranslatedName);
         itemStack.setItemMeta(itemMeta);
