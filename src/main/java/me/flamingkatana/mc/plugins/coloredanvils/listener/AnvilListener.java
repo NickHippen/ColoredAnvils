@@ -23,7 +23,17 @@ public class AnvilListener implements Listener {
         AnvilInventory anvilInventory = event.getInventory();
         HumanEntity humanEntity = event.getView().getPlayer();
 
-        ColoredAnvils.itemColorTranslator().updateColorTranslationForAnvilOutput(anvilInventory, humanEntity);
+        ItemStack inputItem = anvilInventory.getItem(AnvilConstants.FIRST_INPUT_SLOT);
+        if (inputItem == null) {
+            return;
+        }
+        ItemStack outputItem = anvilInventory.getItem(AnvilConstants.OUTPUT_SLOT);
+        if (outputItem == null) {
+            return;
+        }
+
+        event.setResult(ColoredAnvils.itemColorTranslator()
+                .translateOutputItemNameColorBasedOnInputItem(outputItem, inputItem, humanEntity));
     }
 
     @EventHandler

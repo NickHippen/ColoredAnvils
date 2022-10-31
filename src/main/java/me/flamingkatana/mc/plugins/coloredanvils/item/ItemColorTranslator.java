@@ -5,10 +5,8 @@ import me.flamingkatana.mc.plugins.coloredanvils.constant.AnvilConstants;
 import me.flamingkatana.mc.plugins.coloredanvils.util.Util;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.entity.HumanEntity;
-import org.bukkit.inventory.AnvilInventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -22,23 +20,6 @@ public class ItemColorTranslator {
 
     public ItemColorTranslator() {
         useFullColors = canUseFullColors();
-    }
-
-    public void updateColorTranslationForAnvilOutput(AnvilInventory anvilInventory, HumanEntity humanEntity) {
-        new BukkitRunnable() {
-            @Override
-            public void run() {
-                ItemStack inputItem = anvilInventory.getItem(AnvilConstants.FIRST_INPUT_SLOT);
-                if (inputItem == null) {
-                    return;
-                }
-                ItemStack outputItem = anvilInventory.getItem(AnvilConstants.OUTPUT_SLOT);
-                if (outputItem == null) {
-                    return;
-                }
-                translateOutputItemNameColorBasedOnInputItem(outputItem, inputItem, humanEntity);
-            }
-        }.runTaskLater(ColoredAnvils.getPlugin(), 0L);
     }
 
     public ItemStack translateOutputItemNameColorBasedOnInputItem(ItemStack outputItem, ItemStack inputItem, HumanEntity humanEntity) {
